@@ -1,5 +1,6 @@
 # Machine Learning
-Mainly cover most of important information in Machine Learning. 
+In this Repository, most of important information are mainly covered in Machine Learning.  
+For each conten, descriptions on each topic are established above on projects.
 # Main Content
 1. basic knowledge about each topic
 2. understanding on each topic
