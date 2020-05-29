@@ -44,7 +44,7 @@ Desired variables:
 the following feature plots offers vivid distributions in each word feature  
 ![image](https://github.com/FangLintao/Machine-Learning/blob/master/Logistic%20Regression/Images/2.png)  
 #### 3.2. Data Feature Independence
-the following feature plot offers independence relationships amonge all of analysed features. From this praph, the assumption " variables should be independent" in Logistic Regression is proved.
+the following feature plot offers independence relationships amonge all of analysed features. From this praph, the assumption " variables should be independent" in Logistic Regression is proved.  
 ![image](https://github.com/FangLintao/Machine-Learning/blob/master/Logistic%20Regression/Images/3.png)  
 #### 3.3 Data Extraction
 Becuase not all of features are numerical, it is hard to contribute its information to model prediction if these features are very important. In this case, we use the following codes to extract important features from intuitive and do data processing
