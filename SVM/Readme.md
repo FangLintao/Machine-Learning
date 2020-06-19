@@ -100,5 +100,11 @@ vc-bound
 1. All computations can be formulated in a dot product space  
 2. All computations can be executed as dot product operations in H  
 3. To express formulas in terms of the input patterns in X , we can make use of a kernel function k  
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/SVM/images/15.png)
 
+        The kernel trick replaces the mapping φ and following dot product operations by a (simple) calculation in the input space!
 
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/SVM/images/16.png)  
+Advantages
+1. Computations in the input space usually are preferred compared to an explicit mapping into a high dimensional  
+2. Every linear algorithm, which can be expressed by dot product operations, can be ”kernelized”, thus leading to a non-linear version of the algorithm
