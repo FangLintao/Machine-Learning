@@ -141,3 +141,21 @@ For kernel parameters, larger the 𝜎, harger margin is
 Advantages
 1. Computations in the input space usually are preferred compared to an explicit mapping into a high dimensional  
 2. Every linear algorithm, which can be expressed by dot product operations, can be ”kernelized”, thus leading to a non-linear version of the algorithm
+## 3. Support Vector Regression
+Support Vector Regression is regression method in machine learning and it has the fundamental theories as SVM.  
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/SVM/images/20.png)    
+### 3.1 Basic Theory
+SVR takes data points as input information and try to find the best results from its regression function f(x). With the large margin principle, all outputs coming from this regression function are within [−𝜖, +𝜖] are acceptable results with loss=0. However, for those outpus outsides [−𝜖, +𝜖] should consider loss.
+## 4. Kernel Principle Component Analysis
+### 4.1 Main Idea
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/SVM/images/21.png)  
+1. Formulate all calculations of linear PCA (eigenvalue problem!) via dot products of the input space X;  
+2. Obtain a non-linear version of linear PCA by mappings φ from input space X to a high-dimensional feature space H;  
+3. Use the kernel trick, thus compute everything in input space X.
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/SVM/images/22.png)  
+Observation
+
+        * All mathematical and statistical properties of PCA carry over to kPCA  
+            -> a set of data patterns in High-dimensional space instead of vectors in input space  
+        * The number of feature functions is determined by the number of patterns, NOT by dimensionality of input space
+
