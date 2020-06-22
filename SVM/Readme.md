@@ -28,7 +28,8 @@ If pattern xi is from an arbitrary set X, then simiarity measure in vector space
     * The optimal hyperplane has the largest margin  
     * The largest margin is defined by the shortest normal vector w  
 
-However,the optimal hyperplane classifier leads to the following constrained optimization problem
+However,the optimal hyperplane classifier leads to the following constrained optimization problem and dual optimization problem. As showing below, If we see one axis X belongs to constrain optimization problem and another axis Y belongs to dual optimization problem, then teh saddle point exists at the minimum point of constrained optimization problem and the maximum point of dual optimization problem at the same time.   
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/SVM/images/17.png)
 #### 2.2.1 Solving Constrained Optimization Problem  
 ![image](https://github.com/FangLintao/Machine-Learning/blob/master/SVM/images/5.png)  
 
@@ -81,9 +82,15 @@ vc-bound
     * Prefer function classes of lower capacity, if they perform equally well on the training data, or restrict its capacity
 
 ### 2.4 Hard Margin & Soft Margin
+Not all of cases can be seperate completely by hyperplane in practical, which means hard margin.
+
+        1. high noise level may cause an overlap between classes  
+        2. training data set contains mislabelled data points
+
 1. soft margin: allow some data existing at boarder or in margin space  
 2. hard margin: only allow data at boarder  
-3. The hardness of the margin: controlled by a tuning parameter C. 
+3. hard margin is easy to overfit while soft margin belongs to good generation
+4. The hardness of the margin: controlled by a tuning parameter C. 
 
     * large C -> the margin is hard  
     * smaller C -> the margin is softer
@@ -92,11 +99,36 @@ vc-bound
 #### 2.4.1 Hard Margin  
 ![image](https://github.com/FangLintao/Machine-Learning/blob/master/SVM/images/5.png)
 #### 2.4.2 Soft Margin  
-![image](https://github.com/FangLintao/Machine-Learning/blob/master/SVM/images/14.png)
+Soft Margin allows some data points existin margin area, which means, the gap of points to line function is less than one   
+-> Chacteristics  
 
+        * get a solution with a function class of lower capacity
+        * enlarge the margin (→ smoother hyperplane)
+        * reduce R[f]
+
+
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/SVM/images/14.png)  
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/SVM/images/19.png)
+
+    * C determines a trade-off between enlarging the margin and minimizing the training error  
+    * C limits the influence of a single αi , thus not allowing a single SV to ”push” upon the decision hyperplane too strongly
     * large C, punishment of misclassification will increase  
 
-### 2.5 Kernel Trick  
+-> Two parameters b & ν
+->-> scalar b 
+
+        * shifts the decision hyperplane such that SVs with zero slack lie on ±1 lines
+
+->-> parametrization ν
+
+        * 0 < ν ≤ 1  
+        * replace penalty parameter C  
+        * lower-bounds (relative to the number of training data points) the fraction of training patterns which can become SVs and thus can have non-zero slacks  
+        * upper-bounds the fraction of margin errors
+
+The larger v, the harder margin SVM would be  
+For kernel parameters, larger the 𝜎, harger margin is  
+, ### 2.5 Kernel Trick  
 1. All computations can be formulated in a dot product space  
 2. All computations can be executed as dot product operations in H  
 3. To express formulas in terms of the input patterns in X , we can make use of a kernel function k  
@@ -105,6 +137,7 @@ vc-bound
         The kernel trick replaces the mapping φ and following dot product operations by a (simple) calculation in the input space!
 
 ![image](https://github.com/FangLintao/Machine-Learning/blob/master/SVM/images/16.png)  
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/SVM/images/18.png)  
 Advantages
 1. Computations in the input space usually are preferred compared to an explicit mapping into a high dimensional  
 2. Every linear algorithm, which can be expressed by dot product operations, can be ”kernelized”, thus leading to a non-linear version of the algorithm
