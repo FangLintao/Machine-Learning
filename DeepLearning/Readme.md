@@ -37,9 +37,64 @@ The activation function does the non-linear transformation to the input, making 
 Ⅰ. output range: [0, inf]  
 Ⅱ. derivative range: 1
 ![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/4.png)
-### Comparison
-#### Sigmoid & tanh
--> Same
-    monotonically increasing function  
-    
--> Difference  
+
+#### Why tanh activation fucntion is always better than sigmoid activation function
+##### the outputs using tanh
+centre around 0 rather than sigmoid's 0.5, and this makes learning for the next layer a little bit easier.   
+Analysis:  
+Ⅰ. Convergence is usually faster if the average of each input variable over the training set is close to zero  
+Ⅱ. Outputs close to zero are best: during optimization, they produce the least weight swings, and hence let your model converge faster
+#### the potential problem in gradient descent
+##### if the convolution layers are very deep, then data will split into two polar sides in these two activation function, because of the small derivate in activation functions, the learning process is quite slow, generating gradiet vanish.
+## 3. Loss Function
+In the context of an optimization algorithm, loss function used to evaluate a candidate solution (i.e. a set of weights) is referred to as the objective function. The cost or loss function has an important job in that it must faithfully distill all aspects of the model down into a single number in such a way that improvements in that number are a sign of a better model
+### 3.1 Cross-Entropy Loss
+Ⅰ. Application Field: Classification
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/7.png)
+### 3.2 MSE Loss & RMSE
+Ⅰ. Application Field: Regression
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/8.png)
+## 4. [Optimization](https://blog.paperspace.com/intro-to-optimization-in-deep-learning-gradient-descent/)
+when initializing weights in CNN, the loss position is at somewhere of loss function,so what we have to check is that from all possible directions in the x-y plane if assuming in 3-dimensional space, moving along which direction would have the steepest decline in the value of the loss function.   
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/9.png)
+###### reference: ["Intro to optimization in deep learning: Gradient Descent"](https://blog.paperspace.com/intro-to-optimization-in-deep-learning-gradient-descent/), Ayoosh Kathuria, 1 Jun 2018  
+in all of possible direction, only one of them is the steepest descent direction like showing in image above. After locking at the direction, the step size [leraning rate] to the minimum value along this steepest descent direction should be considered.  
+Two potential cases:  
+Ⅰ. large learning rate: overshooting in loss function and never gets to the minimum position    
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/10.png)
+###### reference: ["Intro to optimization in deep learning: Gradient Descent"](https://blog.paperspace.com/intro-to-optimization-in-deep-learning-gradient-descent/), Ayoosh Kathuria, 1 Jun 2018
+Ⅱ. small learning rate: time comsuming and stuck at local minimum in non-convex situation   
+### 4.1 Challenge
+#### 4.1.1 Local Minimum
+In real case, loss function is non-convex, because neural networks are complicated functions, with lots of non-linear transformations thrown in our hypothesis function  
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/11.png)
+###### reference: ["Intro to optimization in deep learning: Gradient Descent"](https://blog.paperspace.com/intro-to-optimization-in-deep-learning-gradient-descent/), Ayoosh Kathuria, 1 Jun 2018  
+#### 4.1.2 Saddle Point
+Saddle Point is similar with local minimum at zero the gradient position, but it is not local minimum.   
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/12.png)
+###### reference: ["Intro to optimization in deep learning: Gradient Descent"](https://blog.paperspace.com/intro-to-optimization-in-deep-learning-gradient-descent/), Ayoosh Kathuria, 1 Jun 2018
+### 4.2  Gradient descent
+#### 4.2.1 Batch Gradient Descent
+Features: slow; intractable for datasets that don't fit in memory
+Ⅰ. computes the gradient of the cost function w.r.t. to the parameters θ for the entire training dataset. 
+Ⅱ. calculate the gradients for the whole dataset to perform just one update
+
+        Convex Function: converge to the global minimum  
+        Non-Convex Function: converge to a local minimum
+
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/13.png)  
+#### 4.2.2 Stochastic Gradient Descent
+##### Randomness: in order to escape local minima and saddle points, while trying to converge to a global minima.
+In stochastic gradient descent, instead of taking a step by computing the gradient of the loss function by summing all the loss functions, we take a step by computing the gradient of the loss only one randomly sampled example without replacement. This means, at every step, we are taking the gradient of a loss function, which is different from our actual loss function. The gradient of this "one-example-loss" at a particular may actually point in a direction slighly different to the gradient of "all-example-loss".  
+##### SGD is useful to solve Saddle Point situation
+#### 4.2.3 Mini-batch gradient descent
+reduces the variance of the parameter updates, which can lead to more stable convergence  
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/14.png)  
+### 4.3 Optimization algorithm
+#### Adam
+computes adaptive learning rates for each parameter  
+
+        Ⅰ. storing an exponentially decaying average of past squared gradients vt  
+        Ⅱ. keeps an exponentially decaying average of past gradients mt  
+
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/15.png)  
