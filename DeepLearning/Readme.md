@@ -77,6 +77,20 @@ In real case, loss function is non-convex, because neural networks are complicat
 Saddle Point is similar with local minimum at zero the gradient position, but it is not local minimum.   
 ![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/12.png)
 ###### reference: ["Intro to optimization in deep learning: Gradient Descent"](https://blog.paperspace.com/intro-to-optimization-in-deep-learning-gradient-descent/), Ayoosh Kathuria, 1 Jun 2018
+#### 4.1.3 Zig-Zag Situation
+Ⅰ. ill-conditioning causes the typical but undesired zig-zag behavior  
+Ⅱ. Usually, optimization methods involve zig-zag situation.   
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/18.png)
+#### Methods to solve zig-zag situation
+Ⅰ. [Momentum](https://blog.paperspace.com/intro-to-optimization-momentum-rmsprop-adam/)   
+Instead of using normal gradient descent formular, momentum accumulates the gradient of the past steps to determine the direction.  
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/19.png)  
+If we sum up values along the direction w1 and w2, then we discover that total value along direction w1 is zero while the w2 value is accumlated. In momentum, for each update iteration, we add value into w2 direction, which speeds up converage rates, moving quickly to minima.   
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/20.png)  
+##### reference : [Intro to optimization in deep learning: Momentum, RMSProp and Adam](https://blog.paperspace.com/intro-to-optimization-momentum-rmsprop-adam/)
+Ⅱ. Preconditioning  
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/21.png)  
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/22.png)  
 ### 4.2  Gradient descent
 #### 4.2.1 Batch Gradient Descent
 Features: slow; intractable for datasets that don't fit in memory
@@ -102,6 +116,23 @@ computes adaptive learning rates for each parameter
         Ⅱ. keeps an exponentially decaying average of past gradients mt  
 
 ![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/15.png)  
+### 4.4 Gradient Vanishing & Gradient Exploding
+deep neural network is stacked by numerous non-linear layers because for activation functions in neural networks, each layer can be viewed as non-linear function.
+#### 4.4.1 Gradient Vanishing
+-> Reasons  
+Ⅰ. because the depth of neural networks, while propergating, values will have polar distribution in activation function, which is hard to learn even through large changes in input variables;  
+Ⅱ. For those values below one, after certain depth of neural networks, these values have exponentially decreasing tendency to zero, which is hard to learn;  
+-> Solutions  
+Ⅰ. Batch normalization after each convolution layer;  
+Ⅱ. Using different activation functions;  
+Ⅲ. Resnet structure;  
+Ⅳ. In RCNN, using LSTM;
+#### 4.4.2 Gradient Exploding
+-> Reasons  
+Ⅰ. For initial weight values above one, values have exponentially increasing tendency  
+-> Solutions  
+Ⅰ. Setting threshold values to cut off values once weight parameters are above certain large value;  
+Ⅱ. weithts regularization: L1 or L2 regulation;
 ## 5. Multilayers Perceptrons  
 ### 5.1 Computation Complexity
 #### the computational complexity (in big-Oh notation) of computing the cross-entropy loss J(w) for logistic regression on a data set of N data points with d dimensions
@@ -127,3 +158,13 @@ A fully connected layer offers features learned from all the combinations of the
 #### Disadvantages
 Ⅰ. Expensive Computation  
 Ⅱ. values in weight matrix are different and numerous
+### 7. Overfitting
+Training loss performs well while validation loss is not when epoches get larger  
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/17.png)  
+##### reference: [Memorizing is not learning! — 6 tricks to prevent overfitting in machine learning](https://hackernoon.com/memorizing-is-not-learning-6-tricks-to-prevent-overfitting-in-machine-learning-820b091dc42)
+#### 7.1 Tackling Overfitting
+Ⅰ. Data Augmentation: adding more gerenal transforms to data sources, like mirroring, flipping, rotation...  
+Ⅱ. Dropout: uniformaly drop out some neurals in fully connection layers  
+Ⅲ. Early Stopping: according to the graph above, it is better to stop early   
+Ⅳ. Regulations: adding penality methods to loss functions, like L1 & L2 penalities to reduce the complexity of the model  
+
