@@ -35,9 +35,13 @@ The activation function does the non-linear transformation to the input, making 
 ### 2.3 Rectified Linear (ReLU) activation function  
 #### Features
 Ⅰ. output range: [0, inf]  
-Ⅱ. derivative range: 1
+Ⅱ. dead neural situation: whenever neural values below zero will be zero,which is dead neurons and it will loss learning features in the future  
+Ⅲ. derivative range: 1
 ![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/4.png)
-
+### 2.4 Softmax activation function
+#### Features
+Ⅰ. Using probability to express likehood of each class  
+![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/16.png)
 #### Why tanh activation fucntion is always better than sigmoid activation function
 ##### the outputs using tanh
 centre around 0 rather than sigmoid's 0.5, and this makes learning for the next layer a little bit easier.   
@@ -98,3 +102,28 @@ computes adaptive learning rates for each parameter
         Ⅱ. keeps an exponentially decaying average of past gradients mt  
 
 ![image](https://github.com/FangLintao/Machine-Learning/blob/master/DeepLearning/images/15.png)  
+## 5. Multilayers Perceptrons  
+### 5.1 Computation Complexity
+#### the computational complexity (in big-Oh notation) of computing the cross-entropy loss J(w) for logistic regression on a data set of N data points with d dimensions
+
+        O(N*d)
+
+#### memory complexity (in big-Oh notation) of a forward pass in an MLP with two hidden layers (of size k1 and k2,respectively) for a batch size B and input dimensionality d
+
+        O(max(B*d,d*K1,B*K1,K1*K2,B*K2))  
+        -> B*d: store the activation of what we need to store the input  
+        -> d*K1: input dimension d multiply with wieght matrix between the input dimension and the first layer with k1 size  
+        -> B*K1: store the activation from the first layer  
+        -> K1*K2: store the computation between the first layer and the second layer  
+        -> B*K2: store the activation from the second layer  
+
+####  the memory complexity (in big-Oh notation) of a forward pass in a perceptron, depending on the batch size B and input dimensionality d
+
+        O(B*d)
+
+### 5.2 Advantages and Disadvantages
+#### Advantages
+A fully connected layer offers features learned from all the combinations of the features of the previous layer;
+#### Disadvantages
+Ⅰ. Expensive Computation  
+Ⅱ. values in weight matrix are different and numerous
