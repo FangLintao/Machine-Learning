@@ -132,7 +132,7 @@ deep neural network is stacked by numerous non-linear layers because for activat
 Ⅰ. For initial weight values above one, values have exponentially increasing tendency  
 -> Solutions  
 Ⅰ. Setting threshold values to cut off values once weight parameters are above certain large value;  
-Ⅱ. weithts regularization: L1 or L2 regulation;
+Ⅱ. weigts regularization: L1 or L2 penalities to lower polynominal parameter values;
 ## 5. Multilayers Perceptrons  
 ### 5.1 Computation Complexity
 #### the computational complexity (in big-Oh notation) of computing the cross-entropy loss J(w) for logistic regression on a data set of N data points with d dimensions
